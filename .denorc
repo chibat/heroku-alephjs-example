@@ -1,0 +1,11 @@
+VERSION=v1.8.2
+
+export DENO_INSTALL=$HOME/.deno_versions/$VERSION
+denov=$(deno -V)
+if [ ! -f $DENO_INSTALL/bin/deno -o "${denov//deno /v}" != "$VERSION" ]
+then
+  curl -fsSL https://deno.land/x/install/install.sh | sh -s $VERSION
+fi
+export PATH="$DENO_INSTALL/bin:$PATH"
+deno -V
+
